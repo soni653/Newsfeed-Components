@@ -85,7 +85,58 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
+  {
+    title:'The Life of a Web Developer in 2020',
+    date: 'Feb 18, 2020',
+  firstParagraph: `By web developers, for web developers, Developer Drive offers the latest news in the world of web development.
+                    This includes opinion articles, tutorials, tips & tricks to start off on the right foot.
+                    Are you looking to learn how to minimize downtime? How about ensuring your site is secure and easy for consumers 
+                    to navigate?Or would you like to keep tabs on every Microsoft software release? From JavaScript to mobile 
+                    development, Developer Drive has you covered `,
+
+  secondParagraph: `While Simple Programmer was originally created by founder John Sonmez to distill what he learned as a web developer
+                    into understandable content, today it is focused on helping software developers, programmers and other IT professionals
+                    improve their careers and their lives.  This blog gets into the nitty-gritty of being a web developer and if you’ve
+                    wondered about something web development related, there’s a good chance they’ve written about it. Simple Programmer
+                    puts a fun spin on videos, keeping you engaged with humor while providing valuable content. They’re constantly posting
+                    new articles – almost daily – so you’ll never be bored`,
+
+  thirdParagraph: ` if you’re a code newbie looking for insight on all things web development, you’re in the right place. This site
+                    acts as a virtual community for anyone new to the coding world. CodeNewbie offers an open look into the lives of
+                    web developers and serves as a place for people to read about career advice while hearing stories from people on their
+                    coding journey through the site’s podcasts.`
+},
+{
+  title:'Education, Training, & Certification for Web Developer',
+  date: 'Jul 2, 2021',
+  firstParagraph: `In some settings, web developers can get started with no more than a high school diploma, but an associate’s degree
+                   or a bachelor’s degree typically is needed to advance in the field.`,
+
+  secondParagraph: `Many high school classes cover the basics of web design and graphic design necessary to the field, and some web 
+                    developers are self-taught. Many employers still will seek candidates with associate’s degrees in web design or
+                    something similar. Some more detail-oriented positions will require at least a bachelor’s degree in computer
+                    programming, computer science, or something similar.`,
+
+  thirdParagraph: `Certifications are not necessary, but job candidates can make themselves more marketable by earning certifications
+                   in areas such as JavaScript or SQL through online courses.`
+},
+{
+  title:'Web Developer Skills & Competencies',
+  date: `Aug 2, 2021`,
+  firstParagraph: `Detail-oriented: One line of code can have a significant impact on a website’s functionality or appearance, and web
+                   developers need to be sure they aren’t missing key details. When troubleshooting, they need to be able to know where the problem.
+                   Multitasking: Projects aren’t always handled one at a time, and one client’s emergency sometimes can push another project
+                   to the backburner. Web developers need to be able to juggle multiple projects without missing deadlines.`,
+
+ secondParagraph: `Self-motivated: The work can be solitary at times. Web developers need to be able to stay on task without anyone standing over them.
+                   Problem-solving: Websites need to be functional as well attractive, and clients’ needs in these regards might not always be
+                   easy to meet. Web developers need to figure out how to translate a client’s vision to an actual, functional website.`,
+
+ thirdParagraph: `Good under pressure: Tight deadlines are common when designing or updating websites. Developers need to be able to
+                  handle the pressure of having work done when needed.`
+}
+
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
@@ -112,3 +163,42 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function createArticle (title,date,firstParagraph,secondParagraph,thirdParagraph)  {
+
+  const article = document.createElement('div');
+  const artTitle = document.createElement('h2');
+  const artDate = document.createElement('p');
+  const para1 = document.createElement('p');
+  const para2 = document.createElement('p');
+  const para3 = document.createElement('p');
+  const span = document.createElement('span');
+
+article.append(artTitle,artDate,para1,para2,para3,span);
+article.classList.add('article');
+artDate.classList.add('date');
+span.classList.add('expandButton');
+
+span.addEventListener('click', () => {
+  article.classList.toggle('article-open');
+})
+
+artTitle.textContent = title;
+artDate.textContent = date;
+para1.textContent = firstParagraph;
+para2.textContent = secondParagraph;
+para3.textContent = thirdParagraph;
+span.textContent = 'Read More';
+
+return article
+
+}
+
+
+const parent = document.querySelector('.articles');
+data.forEach(info => {
+  const newArticle = createArticle(info.title, info.date, info.firstParagraph, info.secondParagraph, info.thirdParagraph);
+  parent.append(newArticle);
+})
+
+
